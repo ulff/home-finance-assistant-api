@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  db:
+    container_name: hfa_db
+    image: postgres:alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=hfa
+      - POSTGRES_PASSWORD=nNC6LG
+      - POSTGRES_DB=hfadb
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/hfa.sql
+      - ./var/postgresql/data:/var/lib/postgresql/data
+      - ./var/tmp:/var/lib/postgresql/tmp

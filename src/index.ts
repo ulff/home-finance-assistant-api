@@ -1,17 +1,13 @@
 import express from "express";
-import {setupRoutes} from "./routes";
+import {config} from "./config";
+import {setupRoutes} from "./Routes";
 
-const {
-  PORT,
-} = process.env;
-
-const port = PORT || 8080;
 const app = express();
 setupRoutes(app);
 
-const httpServer = app.listen(port, () => {
+const httpServer = app.listen(config.port, () => {
   // tslint:disable-next-line:no-console
-  console.log(`server started at http://localhost:${ port }`);
+  console.log(`server started at http://localhost:${ config.port }`);
 });
 
 process.on('SIGTERM', () => {
