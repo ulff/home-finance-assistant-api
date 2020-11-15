@@ -1,7 +1,7 @@
 import express from "express";
 import { validate } from "uuid";
-import {listMembers, getMember} from "../Domain/member";
-import {getAccounts} from "../Domain/account";
+import {listMembers, getMember} from "../Db/Repository/member";
+import {getAccounts} from "../Db/Repository/account";
 
 const router = express.Router();
 

@@ -1,5 +1,5 @@
-import {fetchMany, fetchOne} from "../Db";
-import {MemberType} from "../Contract/MemberType";
+import {fetchMany, fetchOne} from "..";
+import {MemberType} from "../../Contract/MemberType";
 
 export const listMembers: () => Promise<MemberType[]> = async () => {
   const sql: string = "SELECT * FROM users;";
