@@ -9,7 +9,7 @@ export const getAccounts: (owner: string) => Promise<AccountType[]> = async (own
   return await fetchMany(sql, params) as AccountType[];
 };
 
-export const getAccount: (id: string) => Promise<AccountType | null> = async (id) => {
+const getAccount: (id: string) => Promise<AccountType | null> = async (id) => {
   const sql: string = "SELECT * FROM accounts WHERE id = $1;";
   const params: any[] = [id];
 

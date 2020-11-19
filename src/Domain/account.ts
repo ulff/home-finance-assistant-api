@@ -1,5 +1,6 @@
 import {AccountType} from "../Contract/AccountType";
 import {addAccount} from "../Db/Repository/account";
+import {validate} from "uuid";
 
 type addAccountInputType = {
   owner: string;
@@ -14,8 +15,8 @@ export const validateAccount: (input: addAccountInputType) => string[] = ({
 }) => {
   const validationErrors = [];
 
-  if (!owner) {
-    validationErrors.push("Owner is empty.");
+  if (!owner || !validate(owner)) {
+    validationErrors.push("Owner is empty or has invalid format.");
   }
   if (!label) {
     validationErrors.push("Label is empty.");
