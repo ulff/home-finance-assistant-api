@@ -1,5 +1,6 @@
 import {connection} from "./connection";
 import {Client, PoolClient} from "pg";
+import DuplicateKeyError from "./Error/DuplicateKeyError";
 
 let db: (Client & PoolClient) | null = null;
 
@@ -11,6 +12,9 @@ export const execute: (sql: string, params: any[]) => Promise<void> = async (sql
     }
     await db.query(sql, params);
   } catch (e) {
+    if (e.code && e.code === '23505') {
+      throw new DuplicateKeyError(e.constraint);
+    }
     console.error('Database error (execute): ', e);
     throw e;
   }
